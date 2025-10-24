@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pogoda dla {{ location.city }}{% endblock %}
+
+{% block body %}
+    <h1>Pogoda dla {{ location.city }}</h1>
+
+    <p><strong>Kraj:</strong> {{ location.country }}</p>
+    <p><strong>Szerokość geograficzna:</strong> {{ location.liatitude }}</p>
+    <p><strong>Długość geograficzna:</strong> {{ location.longitude }}</p>
+
+    <h2>Ostatnie pomiary:</h2>
+    <ul>
+        {% for m in measurements %}
+            <li>
+                Data: {{ m.date|date('Y-m-d') }} |
+                Temperatura: {{ m.celcius }}°C |
+                Wilgotność: {{ m.humidity }}% |
+                Ciśnienie: {{ m.pressure }} hPa |
+                Wiatr: {{ m.windKmh }} km/h
+            </li>
+        {% else %}
+            <li>Brak pomiarów dla tej lokalizacji.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
