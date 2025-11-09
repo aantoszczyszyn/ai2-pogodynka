@@ -1,0 +1,73 @@
+App\Entity\Location:
+    properties:
+        city:
+            - NotBlank:
+                  message: 'Miasto jest wymagane.'
+                  groups: ['new', 'edit']
+            - Length:
+                  min: 2
+                  max: 100
+                  groups: ['new', 'edit']
+        country:
+            - NotBlank:
+                  message: 'Państwo jest wymagane.'
+                  groups: ['new', 'edit']
+        liatitude:
+            - NotBlank:
+                  message: 'Szerokość geograficzna wymagana przy dodawaniu.'
+                  groups: ['new']
+            - Regex:
+                  pattern: '/^-?\d+(\.\d+)?$/'
+                  message: 'Podaj poprawną wartość liczbową.'
+                  groups: ['new', 'edit']
+        longitude:
+            - NotBlank:
+                  message: 'Długość geograficzna wymagana przy dodawaniu.'
+                  groups: ['new']
+            - Regex:
+                  pattern: '/^-?\d+(\.\d+)?$/'
+                  message: 'Podaj poprawną wartość liczbową.'
+                  groups: ['new', 'edit']
+
+App\Entity\Measurement:
+    properties:
+        date:
+            - NotBlank:
+                  message: 'Data pomiaru jest wymagana.'
+                  groups: ['new', 'edit']
+        celcius:
+            - NotBlank:
+                  message: 'Podaj temperaturę.'
+                  groups: ['new']
+            - Range:
+                  min: -50
+                  max: 60
+                  message: 'Temperatura musi być w zakresie -50°C do 60°C.'
+                  groups: ['new', 'edit']
+        humidity:
+            - NotBlank:
+                  message: 'Podaj wilgotność.'
+                  groups: ['new']
+            - Range:
+                  min: 0
+                  max: 100
+                  message: 'Wilgotność musi być w zakresie 0–100%.'
+                  groups: ['new', 'edit']
+        pressure:
+            - NotBlank:
+                  message: 'Podaj ciśnienie.'
+                  groups: ['new']
+            - Range:
+                  min: 800
+                  max: 1100
+                  message: 'Ciśnienie musi być w zakresie 800–1100 hPa.'
+                  groups: ['new', 'edit']
+        windKmh:
+            - NotBlank:
+                  message: 'Podaj prędkość wiatru.'
+                  groups: ['new']
+            - Range:
+                  min: 0
+                  max: 200
+                  message: 'Prędkość wiatru musi być w zakresie 0–200 km/h.'
+                  groups: ['new', 'edit']

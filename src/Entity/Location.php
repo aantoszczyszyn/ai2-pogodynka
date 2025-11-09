@@ -5,8 +5,8 @@ namespace App\Entity;
 use App\Repository\LocationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: LocationRepository::class)]
 class Location
@@ -16,16 +16,16 @@ class Location
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $city = null;
 
-    #[ORM\Column(length: 2)]
+    #[ORM\Column(length: 2, nullable: true)]
     private ?string $country = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7, nullable: true)]
     private ?string $liatitude = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7, nullable: true)]
     private ?string $longitude = null;
 
     /**
@@ -49,10 +49,9 @@ class Location
         return $this->city;
     }
 
-    public function setCity(string $city): static
+    public function setCity(?string $city): self
     {
         $this->city = $city;
-
         return $this;
     }
 
@@ -61,10 +60,9 @@ class Location
         return $this->country;
     }
 
-    public function setCountry(string $country): static
+    public function setCountry(?string $country): self
     {
         $this->country = $country;
-
         return $this;
     }
 
@@ -73,10 +71,9 @@ class Location
         return $this->liatitude;
     }
 
-    public function setLiatitude(string $liatitude): static
+    public function setLiatitude(?string $liatitude): self
     {
         $this->liatitude = $liatitude;
-
         return $this;
     }
 
@@ -85,10 +82,9 @@ class Location
         return $this->longitude;
     }
 
-    public function setLongitude(string $longitude): static
+    public function setLongitude(?string $longitude): self
     {
         $this->longitude = $longitude;
-
         return $this;
     }
 
@@ -100,7 +96,7 @@ class Location
         return $this->measurements;
     }
 
-    public function addMeasurement(Measurement $measurement): static
+    public function addMeasurement(Measurement $measurement): self
     {
         if (!$this->measurements->contains($measurement)) {
             $this->measurements->add($measurement);
@@ -110,10 +106,9 @@ class Location
         return $this;
     }
 
-    public function removeMeasurement(Measurement $measurement): static
+    public function removeMeasurement(Measurement $measurement): self
     {
         if ($this->measurements->removeElement($measurement)) {
-            // set the owning side to null (unless already changed)
             if ($measurement->getLocation() === $this) {
                 $measurement->setLocation(null);
             }

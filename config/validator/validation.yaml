@@ -1,0 +1,46 @@
+App\Entity\Location:
+    properties:
+        city:
+            - NotBlank:
+                  message: 'Pole miasta jest wymagane.'
+                  groups: ['new', 'edit']
+        country:
+            - NotBlank:
+                  message: 'Wpisz kraj.'
+                  groups: ['new', 'edit']
+        liatitude:
+            - NotBlank:
+                  message: 'Podaj szerokość.'
+                  groups: ['new','edit']
+            -   NotEqualTo:
+                    value: 0
+                    message: 'Szerokość nie może być równa 0.'
+                    groups: [ 'new', 'edit' ]
+
+        longitude:
+            - NotBlank:
+                  message: 'Podaj długość.'
+                  groups: ['new','edit']
+
+App\Entity\Measurement:
+    properties:
+        date:
+            - NotBlank:
+                  message: 'Wybierz datę.'
+                  groups: ['new', 'edit']
+        celcius:
+            - NotBlank:
+                  message: 'Podaj temperaturę.'
+                  groups: ['new', 'edit']
+        humidity:
+            - NotBlank:
+                  message: 'Podaj wilgotność.'
+                  groups: ['new', 'edit']
+        pressure:
+            - NotBlank:
+                  message: 'Podaj ciśnienie.'
+                  groups: ['new', 'edit']
+        windKmh:
+            - NotBlank:
+                  message: 'Podaj wiatr.'
+                  groups: ['new', 'edit']
